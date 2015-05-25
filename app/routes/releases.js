@@ -1,6 +1,12 @@
 import Ember from 'ember';
 import ajax from 'ic-ajax';
 
+var AnalyticsService = {
+  track: function(eventName, data) {
+    console.log("Tracking analytics hit with ", eventName, data);
+  }
+};
+
 export default Ember.Route.extend({
   model: function(params) {
     return ajax({
@@ -16,5 +22,12 @@ export default Ember.Route.extend({
       });
       return releases;
     });
+  },
+
+  actions: {
+    selectRelease: function(release) {
+      AnalyticsService.track('release', release);
+      this.transitionTo('releases.show', release);
+    }
   }
 });

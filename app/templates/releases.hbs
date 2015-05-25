@@ -2,7 +2,7 @@
    <div class="large-2 columns">
       <ul class="side-nav">
         {{#each release in model}}
-          <li>{{link-to release.tag_name "releases.show" release}}</li>
+          <li> <a href="#" {{action "selectRelease" release on="click"}}>{{release.tag_name}} </a> </li>
         {{/each}}
       </ul>
    </div>
