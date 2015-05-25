@@ -10,7 +10,9 @@ Router.map(function() {
   this.resource('channels', function() {
     this.route('show', { path: '/:channel' });
   });
-  this.resource('releases', {path: '/:owner/:repo/releases'});
+  this.resource('releases', {path: '/:owner/:repo/releases'}, function() {
+    this.route('show', {path: '/:release_id'});
+  });
 });
 
 export default Router;
