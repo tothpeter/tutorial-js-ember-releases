@@ -7,9 +7,20 @@ export default Ember.Route.extend({
         repo = transition.params.releases.repo,
         url = 'https://api.github.com/repos/' + owner + '/' + repo + '/releases' + '/' + params.release_id;
     
-    return ajax({
-      url: url,
-      type: 'get'
+    // return ajax({
+    //   url: url,
+    //   type: 'get'
+    // });
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      var p = ajax({
+        url: url,
+        type: 'get'
+      });
+      p.then(function(result) {
+        setTimeout(function() {
+          resolve(result);
+        }, 12000);
+      });
     });
   },
 
